@@ -2,7 +2,7 @@
 
 library(dplyr)
 
-plotData <- function(figName, in_data) {
+plotData <- function(in_data, figName) {
   
   eval_data <- in_data
   
@@ -48,9 +48,11 @@ plotData <- function(figName, in_data) {
   points(2.2, 1.09, col = '#1b9e77', pch = 21, bg = 'white', lwd = 2.5, cex = 1.5)
   text(2.3, 1.1, 'Process-Based', pos = 4, cex = 1.1)
   
+  return(figName)
+  
   dev.off()
   
 }
 
 # To run:
-# plotData("03_visualize/out/figure_1/fig1.png", eval_data)
+# plotData(in_data = eval_data, figName = "03_visualize/out/fig1.png")

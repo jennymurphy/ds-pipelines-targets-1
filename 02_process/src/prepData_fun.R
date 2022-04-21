@@ -24,4 +24,4 @@ prepData <- function(data_inPath) {
 
 
 # To run:
-#  prepData(data_inPath = "01_fetch/out/model_RMSEs.csv", savePath = "02_process/out/preppedData.rds")
+#  prepData(data_inPath = "01_fetch/out/model_RMSEs.csv")
