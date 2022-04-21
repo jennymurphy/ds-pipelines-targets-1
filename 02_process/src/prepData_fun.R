@@ -1,11 +1,12 @@
 # Prepare the data for plotting
 
 
+library(dplyr)
+library(readr)
+library(stringr)
+
+
 prepData <- function(data_inPath, savePath) {
-  
-  require(dplyr)
-  require(readr)
-  require(stringr)
   
   eval_data <- readr::read_csv(data_inPath, col_types = 'iccd') %>%
     filter(str_detect(exper_id, 'similar_[0-9]+')) %>%
