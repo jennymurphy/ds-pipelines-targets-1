@@ -48,9 +48,9 @@ plotData <- function(in_data, figName) {
   points(2.2, 1.09, col = '#1b9e77', pch = 21, bg = 'white', lwd = 2.5, cex = 1.5)
   text(2.3, 1.1, 'Process-Based', pos = 4, cex = 1.1)
   
-  return(figName)
-  
   dev.off()
+  
+  return(figName)
   
 }
 
