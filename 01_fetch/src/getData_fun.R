@@ -2,14 +2,15 @@
 
 library(sbtools)
 
-getSBdata <- function(childItemID) {
+getSBdata <- function(childItemID, saveFile) {
   
-  # Get the data from ScienceBase
-  mendota_file <- file.path('01_fetch/out/model_RMSEs.csv')
+  # Get the data from ScienceBase & save file
   item_file_download(childItemID, names = 'me_RMSE.csv', 
-                     destinations = mendota_file, overwrite_file = TRUE)
+                     destinations = file.path(saveFile), overwrite_file = TRUE)
+  
+  # return(saveFile)
   
 }
 
 # To Run:
-# getSBdata(childItemID = '5d925066e4b0c4f70d0d0599')
+# getSBdata(childItemID = '5d925066e4b0c4f70d0d0599', saveFile = '01_fetch/out/model_RMSEs.csv')

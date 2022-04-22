@@ -5,3 +5,11 @@
 
 # Ignore all out folders and their contents
 */out/*
+
+# Ignore _targets file
+_targets*
+
+# Allow the placeholder `.empty` files so that the
+# directory can exist in the repo on GitLab
+!*/out/.empty
+!*/tmp/.empty

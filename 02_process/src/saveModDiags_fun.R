@@ -5,9 +5,9 @@ library(whisker)
 
 # Save the model diagnostics
 
-saveModDiags <- function(in_data) {
+saveModDiags <- function(in_data, out_file) {
   
-  eval_data <- readRDS(in_data)
+  eval_data <- in_data
   
   render_data <- list(pgdl_980mean = filter(eval_data, model_type == 'pgdl', exper_id == "similar_980") %>% pull(rmse) %>% mean %>% round(2),
                       dl_980mean = filter(eval_data, model_type == 'dl', exper_id == "similar_980") %>% pull(rmse) %>% mean %>% round(2),
@@ -24,9 +24,10 @@ saveModDiags <- function(in_data) {
   ({{dl_500mean}} and {{pb_500mean}}°C, respectively) or more, but worse than PB when training was reduced to 100 profiles ({{dl_100mean}} and {{pb_100mean}}°C respectively) or fewer.
   The PGDL prediction accuracy was more robust compared to PB when only two profiles were provided for training ({{pgdl_2mean}} and {{pb_2mean}}°C, respectively). '
   
-  whisker.render(template_1 %>% str_remove_all('\n') %>% str_replace_all('  ', ' '), render_data ) %>% cat(file = '03_visualize/out/model_diagnostic_text.txt')
+  whisker.render(template_1 %>% str_remove_all('\n') %>% str_replace_all('  ', ' '), render_data ) %>% cat(file = out_file)
   
+  return(out_file)
 }
 
 # To run
-# saveModDiags("02_process/out/preppedData.rds")
+# saveModDiags(eval_data)

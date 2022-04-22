@@ -6,7 +6,7 @@ library(readr)
 library(stringr)
 
 
-prepData <- function(data_inPath, savePath) {
+prepData <- function(data_inPath) {
   
   eval_data <- readr::read_csv(data_inPath, col_types = 'iccd') %>%
     filter(str_detect(exper_id, 'similar_[0-9]+')) %>%
@@ -20,10 +20,10 @@ prepData <- function(data_inPath, savePath) {
       model_type == 'pgdl' ~ 23
     ), n_prof = as.numeric(str_extract(exper_id, '[0-9]+')))
   
-  saveRDS(eval_data, savePath)
+  return(eval_data)
   
 }
 
 
 # To run:
-#  prepData(data_inPath = "01_fetch/out/model_RMSEs.csv", savePath = "02_process/out/preppedData.rds")
+#  prepData(data_inPath = "01_fetch/out/model_RMSEs.csv")
